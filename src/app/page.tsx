@@ -121,12 +121,6 @@ export default function Home() {
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="#local"
-                className="rounded-full border border-orange-400/30 px-5 py-3"
-              >
-                📍 Local
-              </a>
-              <a
                 href={event.mapsUrl}
                 target="_blank"
                 rel="noreferrer"
