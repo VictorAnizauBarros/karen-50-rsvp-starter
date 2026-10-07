@@ -5,9 +5,10 @@ export const event = {
   startDate: "2026-10-31",
   endDate: "2026-11-02",
   dateLabel: "31 de outubro, 1 e 2 de novembro de 2026",
-  locationName: "Endereço da festa",
-  locationAddress: "Endereço fictício — substituir antes da publicação",
-  mapsUrl: "https://maps.google.com/",
+  locationName: "Chácara Recanto Vale Verde",
+  locationAddress:
+    "Av. Arquiteto Clayton Alves Corrêa, 705 — Vale Verde, Valinhos - SP",
+  mapsUrl: "https://maps.app.goo.gl/dodXUGxwfjThGseB8?g_st=iw",
   days: [
     {
       date: "31/10",
