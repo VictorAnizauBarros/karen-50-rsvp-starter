@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requireAdmin } from "@/lib/supabase/admin-auth";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const auth = await requireAdmin(request);
 
   if (!auth.authorized) {
@@ -45,7 +45,7 @@ export async function GET(request: Request) {
     }
 
     const formattedRsvps = (rsvps ?? []).map((rsvp) => {
-      const guest = rsvp.guests;
+      const guest = Array.isArray(rsvp.guests) ? rsvp.guests[0] : rsvp.guests;
 
       return {
         id: rsvp.id,
@@ -58,7 +58,11 @@ export async function GET(request: Request) {
           : [],
         respondedAt: rsvp.responded_at,
         days: (rsvp.rsvp_days ?? [])
-          .map((item) => item.event_days)
+          .map((item) =>
+            Array.isArray(item.event_days)
+              ? item.event_days[0]
+              : item.event_days,
+          )
           .filter(Boolean)
           .map((day) => ({
             date: day.event_date,

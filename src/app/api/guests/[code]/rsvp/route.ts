@@ -68,7 +68,13 @@ export async function GET(_request: Request, context: RouteContext) {
 
     const selectedDays =
       rsvp.rsvp_days
-        ?.map((item) => item.event_days?.event_date)
+        ?.map((item) => {
+          const eventDay = Array.isArray(item.event_days)
+            ? item.event_days[0]
+            : item.event_days;
+
+          return eventDay?.event_date;
+        })
         .filter(Boolean) ?? [];
 
     return NextResponse.json({
